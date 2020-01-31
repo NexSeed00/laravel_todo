@@ -33,20 +33,20 @@
 ### テーブル名: tasks
 | 列名        | データ型    | NOT NULL | デフォルト | 備考                 |
 | ----------- | ----------- | -------- | ---------- | -------------------- |
-| id          | INT         | YES      |            | PK                   |
-| title       | varchar(30) | YES      |            | タスクの題名が入る   |
-| contents    | varchar(140)| NO       |            | タスクの詳細が入る   |
-| image_at    | TIMESTAMP   | NO       |            |                      |
-| user_id     | TIMESTAMP   | NO       |            |                      |
+| id          | BIGINT      | YES      |            | PK                   |
+| title       | VARCHAR(30) | YES      |            | タスクの題名が入る   |
+| contents    | VARCHAR(140)| NO       |            | タスクの詳細が入る   |
+| image_at    | TEXT        | NO       |            |                      |
+| user_id     | BIGINT      | NO       |            |                      |
 | created_at  | TIMESTAMP   | NO       |            | タスクの登録日       |
 | updated_at  | TIMESTAMP   | NO       |            | タスクの更新日       |
 
 ### テーブル名: users
 | 列名        | データ型    | NOT NULL | デフォルト | 備考                 |
 | ----------- | ----------- | -------- | ---------- | -------------------- |
-| id          | INT         | YES      |            | PK                   |
-| email       | varchar(30) | NO       |            |                      |
-| password    | varchar(90) | NO       |            |                      |
+| id          | BIGINT      | YES      |            | PK                   |
+| email       | VARCHAR(30) | NO       |            |                      |
+| password    | VARCHAR(90) | NO       |            |                      |
 | created_at  | TIMESTAMP   | NO       |            | アカウントの登録日   |
 | updated_at  | TIMESTAMP   | NO       |            | アカウントの更新日   |
 
