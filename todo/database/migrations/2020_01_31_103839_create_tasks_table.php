@@ -17,8 +17,8 @@ class CreateTasksTable extends Migration
             $table->bigIncrements('id');
             $table->string('title', 30);
             $table->string('contents', 140);
-            $table->text('image_at');
-            $table->unsignedBigInteger('user_id');
+            $table->text('image_at')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }
