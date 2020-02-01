@@ -21,3 +21,5 @@ Route::post('/tasks/store', 'TaskController@store')->name('task.store');
 
 Route::get('/tasks/{id}/edit', 'TaskController@edit')->name('task.edit');
 
+Route::put('/tasks/{id}/update', 'TaskController@update')->name('task.update');
+

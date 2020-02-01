@@ -3,8 +3,9 @@
 @section('content')
     <div class="row mt-4 px-4">
         <div class="col-12">
-            <form action="" method="post">
+            <form action="{{ route('task.update', ['id' => $task->id]) }}" method="post">
                 @csrf
+                @method('put')
                 <div class="form-group">
                     <label for="title">Title</label>
                 <input type="text" class="form-control" name="title" id="title" value="{{  $task->title }}">
