@@ -88,5 +88,19 @@ routeの作成
 
 ### エラーハンドリング
 - バリデーション
+```
+php artisan make:request TaskRequest
+
+```
 - 404
-- 403
+```
+ルートモデルバインディング
+```
+
+
+### 認証機能
+```
+composer require laravel/ui --dev
+php artisan ui:auth
+不要なファイルとコードの削除
+```
