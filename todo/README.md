@@ -45,6 +45,7 @@
 | 列名        | データ型    | NOT NULL | デフォルト | 備考                 |
 | ----------- | ----------- | -------- | ---------- | -------------------- |
 | id          | BIGINT      | YES      |            | PK                   |
+| name        | VARCHAR(30) | NO       |            |                      |
 | email       | VARCHAR(30) | NO       |            |                      |
 | password    | VARCHAR(90) | NO       |            |                      |
 | created_at  | TIMESTAMP   | NO       |            | アカウントの登録日   |
