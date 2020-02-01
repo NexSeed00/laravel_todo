@@ -25,6 +25,7 @@ class TaskController extends Controller
         Task::create([
             'title' => $request->title,
             'contents' => $request->contents,
+            'user_id' => \Auth::id(),
         ]);
 
         return redirect()->route('task.index');
