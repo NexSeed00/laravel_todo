@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskRequest;
 use App\Task;
-use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -38,7 +37,7 @@ class TaskController extends Controller
         return view('tasks.edit', compact('task'));
     }
 
-    public function update(int $id, Request $request)
+    public function update(int $id, TaskRequest $request)
     {
         $task = Task::find($id);
 
