@@ -31,7 +31,7 @@
                 <a href="{{ url('/') }}" class="navbar-brand">Todo</a>
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="">Create</a>
+                        <a class="nav-link text-light" href="{{ route('task.create') }}">Create</a>
                         </li>
                         <li class="nav-item">
                             <form class="form-inline">
