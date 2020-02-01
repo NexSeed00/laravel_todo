@@ -101,6 +101,6 @@ php artisan make:request TaskRequest
 ### 認証機能
 ```
 composer require laravel/ui --dev
-php artisan ui:auth
+php artisan ui:auth bootstrap
 不要なファイルとコードの削除
 ```
