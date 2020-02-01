@@ -12,7 +12,7 @@
                             <?= $task->contents; ?>
                         </p>
                         <div class="text-right d-flex justify-content-end">
-                            <a href="" class="btn text-success">EDIT</a>
+                        <a href="{{ route('task.edit', ['id' => $task->id]) }}" class="btn text-success">EDIT</a>
                             <form action="" action="post">
                                 <input type="hidden" name="id" value="<?= $task->id; ?>">
                                 <button type="submit" class="btn text-danger">DELETE</button>

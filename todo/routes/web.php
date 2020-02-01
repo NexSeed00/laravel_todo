@@ -11,9 +11,13 @@
 |
 */
 
+use App\Http\Controllers\TaskController;
+
 Route::get('/', 'TaskController@index')->name('task.index');
 
 Route::get('/tasks/create', 'TaskController@create')->name('task.create');
 
 Route::post('/tasks/store', 'TaskController@store')->name('task.store');
+
+Route::get('/tasks/{id}/edit', 'TaskController@edit')->name('task.edit');
 
