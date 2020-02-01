@@ -11,14 +11,16 @@
                         <p class="card-text">
                             <?= $task->contents; ?>
                         </p>
-                        <div class="text-right d-flex justify-content-end">
-                        <a href="{{ route('task.edit', ['task' => $task->id]) }}" class="btn text-success">EDIT</a>
-                            <form action="{{ route('task.delete', ['task' => $task->id]) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn text-danger">DELETE</button>
-                            </form>
-                        </div>
+                        @if(Auth::check() && Auth::id() === $task->user_id)
+                            <div class="text-right d-flex justify-content-end">
+                                <a href="{{ route('task.edit', ['task' => $task->id]) }}" class="btn text-success">EDIT</a>
+                                <form action="{{ route('task.delete', ['task' => $task->id]) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn text-danger">DELETE</button>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
