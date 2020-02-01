@@ -19,4 +19,14 @@ class TaskController extends Controller
     {
         return view('tasks.create');
     }
+
+    public function store(Request $request)
+    {
+        Task::create([
+            'title' => $request->title,
+            'contents' => $request->contents,
+        ]);
+
+        return redirect()->route('task.index');
+    }
 }

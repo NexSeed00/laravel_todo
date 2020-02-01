@@ -3,7 +3,8 @@
 @section('content')
     <div class="row mt-4 px-4">
         <div class="col-12">
-            <form action="" method="post">
+            <form action="{{ route('task.store') }}" method="post">
+                @csrf
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" class="form-control" name="title" id="title">
