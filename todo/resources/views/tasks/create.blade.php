@@ -19,7 +19,7 @@
                     <textarea class="form-control {{ $errors->has('contents') ? 'is-invalid' : '' }} " name="contents" id="contents" cols="30" rows="10">{{ old('contents') }}</textarea>
                     @if ($errors->has('contents'))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('title') }}</strong>
+                            <strong>{{ $errors->first('contents') }}</strong>
                         </span>
                     @endif
                 </div>
