@@ -70,5 +70,14 @@ php artisan make:controller TaskController
 # model
 
 # view
+npm i
+npm run dev
+npm run watch
+
+```
+
+### 新規作成
+```
+routeの作成
 
 ```
