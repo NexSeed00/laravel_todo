@@ -15,15 +15,18 @@ use App\Http\Controllers\TaskController;
 
 Route::get('/', 'TaskController@index')->name('task.index');
 
-Route::get('/tasks/create', 'TaskController@create')->name('task.create');
 
-Route::post('/tasks/store', 'TaskController@store')->name('task.store');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/tasks/create', 'TaskController@create')->name('task.create');
 
-Route::get('/tasks/{task}/edit', 'TaskController@edit')->name('task.edit');
+    Route::post('/tasks/store', 'TaskController@store')->name('task.store');
 
-Route::put('/tasks/{task}/update', 'TaskController@update')->name('task.update');
+    Route::get('/tasks/{task}/edit', 'TaskController@edit')->name('task.edit');
 
-Route::delete('/tasks/{task}/delete', 'TaskController@delete')->name('task.delete');
+    Route::put('/tasks/{task}/update', 'TaskController@update')->name('task.update');
+
+    Route::delete('/tasks/{task}/delete', 'TaskController@delete')->name('task.delete');
+});
 
 
 Auth::routes();
