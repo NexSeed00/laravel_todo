@@ -11,3 +11,4 @@
 |
 */
 
+Route::get('/', 'TaskController@index')->name('task.index');
