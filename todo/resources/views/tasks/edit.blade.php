@@ -3,7 +3,7 @@
 @section('content')
     <div class="row mt-4 px-4">
         <div class="col-12">
-            <form action="{{ route('task.update', ['id' => $task->id]) }}" method="post">
+            <form action="{{ route('task.update', ['task' => $task->id]) }}" method="post">
                 @csrf
                 @method('put')
                 <div class="form-group">

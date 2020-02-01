@@ -30,17 +30,13 @@ class TaskController extends Controller
         return redirect()->route('task.index');
     }
 
-    public function edit(int $id)
+    public function edit(Task $task)
     {
-        $task = Task::find($id);
-
         return view('tasks.edit', compact('task'));
     }
 
-    public function update(int $id, TaskRequest $request)
+    public function update(Task $task, TaskRequest $request)
     {
-        $task = Task::find($id);
-
         $task->update([
             'title' => $request->title,
             'contents' => $request->contents,
@@ -49,10 +45,8 @@ class TaskController extends Controller
         return redirect()->route('task.index');
     }
 
-    public function delete(int $id)
+    public function delete(Task $task)
     {
-        $task = Task::find($id);
-
         $task->delete();
 
         return redirect()->route('task.index');

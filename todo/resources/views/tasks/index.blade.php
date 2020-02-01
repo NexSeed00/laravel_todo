@@ -12,8 +12,8 @@
                             <?= $task->contents; ?>
                         </p>
                         <div class="text-right d-flex justify-content-end">
-                        <a href="{{ route('task.edit', ['id' => $task->id]) }}" class="btn text-success">EDIT</a>
-                            <form action="{{ route('task.delete', ['id' => $task->id]) }}" method="post">
+                        <a href="{{ route('task.edit', ['task' => $task->id]) }}" class="btn text-success">EDIT</a>
+                            <form action="{{ route('task.delete', ['task' => $task->id]) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn text-danger">DELETE</button>
