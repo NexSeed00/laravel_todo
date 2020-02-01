@@ -28,10 +28,10 @@
         <div class="row">
             <div class="col-12">
                 <nav class="navbar navbar-dark bg-dark">
-                    <a href="index.php" class="navbar-brand">Todo</a>
+                <a href="{{ url('/') }}" class="navbar-brand">Todo</a>
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="create.php">Create</a>
+                            <a class="nav-link text-light" href="">Create</a>
                         </li>
                         <li class="nav-item">
                             <form class="form-inline">
