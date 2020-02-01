@@ -34,6 +34,6 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
 
-        return view('tasks.edit', compact('id'));
+        return view('tasks.edit', compact('task'));
     }
 }
