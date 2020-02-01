@@ -47,6 +47,14 @@ class TaskController extends Controller
         ]);
 
         return redirect()->route('task.index');
+    }
 
+    public function delete(int $id)
+    {
+        $task = Task::find($id);
+
+        $task->delete();
+
+        return redirect()->route('task.index');
     }
 }
