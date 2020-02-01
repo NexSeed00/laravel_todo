@@ -7,11 +7,21 @@
                 @csrf
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" name="title" id="title">
+                    <input type="text" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" name="title" id="title" value="{{ old('title') }}">
+                    @if ($errors->has('title'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('title') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="contents">Contents</label>
-                    <textarea class="form-control" name="contents" id="contents" cols="30" rows="10"></textarea>
+                    <textarea class="form-control {{ $errors->has('contents') ? 'is-invalid' : '' }} " name="contents" id="contents" cols="30" rows="10">{{ old('contents') }}</textarea>
+                    @if ($errors->has('contents'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('title') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <div class="custom-file">
