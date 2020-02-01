@@ -25,3 +25,5 @@ Route::put('/tasks/{task}/update', 'TaskController@update')->name('task.update')
 
 Route::delete('/tasks/{task}/delete', 'TaskController@delete')->name('task.delete');
 
+
+Auth::routes();
