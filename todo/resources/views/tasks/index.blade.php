@@ -7,11 +7,11 @@
                 <div class="card">
                     <img src="https://picsum.photos/200" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $task->title; ?></h5>
+                        <h5 class="card-title">{{ $task->title }}</h5>
                         <p class="card-text">
-                            <?= $task->contents; ?>
+                            {{ $task->contents }}
                         </p>
-                        @if(Auth::check() && Auth::id() === $task->user_id)
+                        @can('access-task', $task)
                             <div class="text-right d-flex justify-content-end">
                                 <a href="{{ route('task.edit', ['task' => $task->id]) }}" class="btn text-success">EDIT</a>
                                 <form action="{{ route('task.delete', ['task' => $task->id]) }}" method="post">
@@ -20,7 +20,7 @@
                                     <button type="submit" class="btn text-danger">DELETE</button>
                                 </form>
                             </div>
-                        @endif
+                        @endcan
                     </div>
                 </div>
             </div>
