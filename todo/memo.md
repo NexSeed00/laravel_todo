@@ -9,6 +9,7 @@
 - 削除
 - エラーハンドリング
 - 認証機能
+- 認可機能
 - 画像投稿機能
 - マイページ
 - 検索機能
@@ -103,4 +104,9 @@ php artisan make:request TaskRequest
 composer require laravel/ui --dev
 php artisan ui:auth bootstrap
 不要なファイルとコードの削除
+```
+
+### 認可機能
+```
+
 ```
