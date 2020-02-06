@@ -34,6 +34,7 @@
                             </span>
                         @endif
                     </div>
+                    <img src="{{ asset($task->image_at) }}" class="card-img-top" alt="...">
                 </div>
                 <input type="hidden" name="id" value="{{ $task->id }}">
                 <div class="d-flex justify-content-end">
