@@ -26,6 +26,7 @@ class TaskRequest extends FormRequest
         return [
             'title' => ['required', 'max:30'],
             'contents' => ['required', 'max:140'],
+            'image' => ['max:2048', 'image'],
         ];
     }
 }
