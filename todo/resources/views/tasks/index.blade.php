@@ -5,7 +5,7 @@
         @foreach($tasks as $task)
             <div class="col-sm-6 col-md-4 col-lg-3 py-3 py-3">
                 <div class="card">
-                    <img src="https://picsum.photos/200" class="card-img-top" alt="...">
+                    <img src="{{ asset($task->image_at) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ $task->title }}</h5>
                         <p class="card-text">
