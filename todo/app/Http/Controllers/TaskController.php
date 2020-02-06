@@ -23,10 +23,16 @@ class TaskController extends Controller
 
     public function store(TaskRequest $request)
     {
+        $filePath = null;
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $filePath = $this->saveImage($request->file('image'));
+        }
+
         Task::create([
             'title' => $request->title,
             'contents' => $request->contents,
             'user_id' => \Auth::id(),
+            'image_at' => $filePath,
         ]);
 
         return redirect()->route('task.index');
@@ -64,5 +70,16 @@ class TaskController extends Controller
         $task->delete();
 
         return redirect()->route('task.index');
+    }
+
+    private function saveImage($image)
+    {
+        // php artisan storage:linkコマンドでシンボリックリンクも作成する
+        $filePath = $image->store(
+            'images/tasks',
+            'public'
+        );
+
+        return 'storage/' . $filePath;
     }
 }

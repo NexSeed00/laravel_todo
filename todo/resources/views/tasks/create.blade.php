@@ -3,7 +3,7 @@
 @section('content')
     <div class="row mt-4 px-4">
         <div class="col-12">
-            <form action="{{ route('task.store') }}" method="post">
+            <form action="{{ route('task.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="image">
+                        <input type="file" class="custom-file-input" id="image" name="image">
                         <label class="custom-file-label" for="image">Choose file</label>
                     </div>
                 </div>
