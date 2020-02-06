@@ -26,8 +26,13 @@
                 </div>
                 <div class="form-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="image">
+                        <input type="file" class="custom-file-input {{ $errors->has('image') ? 'is-invalid' : '' }}" id="image" name="image">
                         <label class="custom-file-label" for="image">Choose file</label>
+                        @if ($errors->has('image'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('image') }}</strong>
+                            </span>
+                        @endif
                     </div>
                 </div>
                 <input type="hidden" name="id" value="{{ $task->id }}">
