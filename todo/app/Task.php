@@ -17,4 +17,9 @@ class Task extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function bookmarks()
+    {
+        return $this->belongsToMany('App\User', 'bookmarks')->withTimestamps();
+    }
 }

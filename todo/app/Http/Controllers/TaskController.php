@@ -78,6 +78,13 @@ class TaskController extends Controller
         return redirect()->route('task.index');
     }
 
+    public function bookmark(Task $task)
+    {
+        $task->bookmarks()->attach(\Auth::id());
+
+        return redirect()->route('task.index');
+    }
+
     private function saveImage($image)
     {
         // php artisan storage:linkコマンドでシンボリックリンクも作成する

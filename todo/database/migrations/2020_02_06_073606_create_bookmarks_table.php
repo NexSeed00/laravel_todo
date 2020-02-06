@@ -28,6 +28,7 @@ class CreateBookmarksTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('task_id');
+            $table->timestamps();
         });
     }
 

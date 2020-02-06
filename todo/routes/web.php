@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/tasks/{task}/update', 'TaskController@update')->name('task.update');
 
     Route::delete('/tasks/{task}/delete', 'TaskController@delete')->name('task.delete');
+
+    Route::post('task/{task}/bookmark', 'TaskController@bookmark')->name('task.bookmark');
 });
 
 

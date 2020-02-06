@@ -11,16 +11,24 @@
                         <p class="card-text">
                             {{ $task->contents }}
                         </p>
-                        @can('access-task', $task)
-                            <div class="text-right d-flex justify-content-end">
+                        <div class="text-right d-flex justify-content-end">
+                            @auth
+                                <form action="{{ route('task.bookmark', ['task' => $task->id]) }}" method="post">
+                                    @csrf
+                                    <button class="btn text-info">
+                                        <i class="far fa-bookmark"></i>
+                                    </button>
+                                </form>
+                            @endauth
+                            @can('access-task', $task)
                                 <a href="{{ route('task.edit', ['task' => $task->id]) }}" class="btn text-success">EDIT</a>
                                 <form action="{{ route('task.delete', ['task' => $task->id]) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn text-danger">DELETE</button>
                                 </form>
-                            </div>
-                        @endcan
+                            @endcan
+                        </div>
                     </div>
                 </div>
             </div>
