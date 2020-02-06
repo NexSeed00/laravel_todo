@@ -53,9 +53,15 @@ class TaskController extends Controller
             abort(403);
         }
 
+        $filePath = $task->image_at;
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $filePath = $this->saveImage($request->file('image'));
+        }
+
         $task->update([
             'title' => $request->title,
             'contents' => $request->contents,
+            'image_at' => $filePath,
         ]);
 
         return redirect()->route('task.index');
