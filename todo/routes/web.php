@@ -17,6 +17,8 @@ Route::get('/', 'TaskController@index')->name('task.index');
 
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/mypage', 'UserController@mypage')->name('user.mypage');
+
     Route::get('/tasks/create', 'TaskController@create')->name('task.create');
 
     Route::post('/tasks/store', 'TaskController@store')->name('task.store');
