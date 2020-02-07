@@ -12,7 +12,6 @@
 - 認可機能
 - 画像投稿機能
 - マイページ
-- 検索機能
 - ブックマーク
 - メモ(コメント)
 
@@ -109,4 +108,18 @@ php artisan ui:auth bootstrap
 ### 認可機能
 ```
 
+```
+
+### ブックマーク
+```
+php artisan make:migration create_bookmarks_table 
+
+## マグレーションファイル編集
+
+## マイグレーション
+php artisan migrate
+```
+
+### コメント
+```
 ```

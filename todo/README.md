@@ -1,4 +1,4 @@
-# PHP + MySQLを利用したTODOアプリの作成
+# Laravelを利用したTODOアプリの作成
 
 ## 実施する内容
 - TODOアプリの作成(チーム開発)
@@ -27,7 +27,12 @@
 - タスクの検索ができる
 - 画像の投稿ができる
 - マイページの作成
+- タスクのブックマークができる
+- タスクにコメントができる
 
+
+### ERD
+![ERD](./Laravel_todo.jpeg)
 
 ### テーブル定義
 ### テーブル名: tasks
@@ -48,8 +53,27 @@
 | name        | VARCHAR(30) | NO       |            |                      |
 | email       | VARCHAR(30) | NO       |            |                      |
 | password    | VARCHAR(90) | NO       |            |                      |
-| created_at  | TIMESTAMP   | NO       |            | アカウントの登録日   |
-| updated_at  | TIMESTAMP   | NO       |            | アカウントの更新日   |
+| created_at  | TIMESTAMP   | NO       |            |                      |
+| updated_at  | TIMESTAMP   | NO       |            |                      |
+
+### テーブル名: bookmarks
+| 列名        | データ型    | NOT NULL | デフォルト | 備考                 |
+| ----------- | ----------- | -------- | ---------- | -------------------- |
+| id          | BIGINT      | YES      |            | PK                   |
+| task_id     | BIGINT      | NO       |            |                      |
+| user_id     | BIGINT      | NO       |            |                      |
+| created_at  | TIMESTAMP   | NO       |            |                      |
+| updated_at  | TIMESTAMP   | NO       |            |                      |
+
+### テーブル名: comments
+| 列名        | データ型    | NOT NULL | デフォルト | 備考                 |
+| ----------- | ----------- | -------- | ---------- | -------------------- |
+| id          | BIGINT      | YES      |            | PK                   |
+| body        | TEXT        | NO       |            |                      |
+| task_id     | BIGINT      | NO       |            |                      |
+| user_id     | BIGINT      | NO       |            |                      |
+| created_at  | TIMESTAMP   | NO       |            |                      |
+| updated_at  | TIMESTAMP   | NO       |            |                      |
 
 
 ## その他

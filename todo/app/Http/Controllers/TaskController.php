@@ -6,11 +6,13 @@ use App\Http\Requests\TaskRequest;
 use App\Task;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TaskController extends Controller
 {
     public function index()
     {
+
         $tasks = Task::orderBy('created_at', 'desc')->get();
 
         return view('tasks.index', compact('tasks'));
@@ -70,8 +72,16 @@ class TaskController extends Controller
 
     public function delete(Task $task)
     {
+        // dd($task->image_at);
+        Storage::delete('storage/app/public/images/tasks/Gop8B5nn3fQen9epjMYEukej6fx52TLsm5HRWfAr.jpeg');
+        dd($task->image_at);
+
         if (Gate::denies('access-task', $task)) {
             abort(403);
+        }
+
+        if (!is_null($task->image_at)) {
+            $this->deleteImage($task);
         }
 
         $task->delete();
@@ -113,5 +123,11 @@ class TaskController extends Controller
         );
 
         return 'storage/' . $filePath;
+    }
+
+    private function deleteImage($task)
+    {
+        Storage::disk('local')->delete('storage/images/tasks/Gop8B5nn3fQen9epjMYEukej6fx52TLsm5HRWfAr.jpeg');
+        dd($task->image_at);
     }
 }
