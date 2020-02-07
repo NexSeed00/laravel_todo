@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TaskRequest;
 use App\Task;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -90,6 +91,17 @@ class TaskController extends Controller
         $task->bookmarks()->detach(\Auth::id());
 
         return redirect()->route('task.index');
+    }
+
+    public function search(Request $request)
+    {
+        $searchWord = $request->input('text');
+        $tasks = Task::where('title', 'like', "%$searchWord%")
+            ->orWhere('contents', 'like', "%$searchWord%")
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('tasks.index', compact('tasks'));
     }
 
     private function saveImage($image)

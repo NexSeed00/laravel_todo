@@ -15,6 +15,8 @@ use App\Http\Controllers\TaskController;
 
 Route::get('/', 'TaskController@index')->name('task.index');
 
+Route::get('/search', 'TaskController@search')->name('task.search');
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/mypage', 'UserController@mypage')->name('user.mypage');
