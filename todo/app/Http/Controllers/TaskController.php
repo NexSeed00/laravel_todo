@@ -85,6 +85,13 @@ class TaskController extends Controller
         return redirect()->route('task.index');
     }
 
+    public function unbook(Task $task)
+    {
+        $task->bookmarks()->detach(\Auth::id());
+
+        return redirect()->route('task.index');
+    }
+
     private function saveImage($image)
     {
         // php artisan storage:linkコマンドでシンボリックリンクも作成する

@@ -30,6 +30,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/tasks/{task}/delete', 'TaskController@delete')->name('task.delete');
 
     Route::post('task/{task}/bookmark', 'TaskController@bookmark')->name('task.bookmark');
+
+    Route::post('task/{task}/unbook', 'TaskController@unbook')->name('task.unbook');
 });
 
 
