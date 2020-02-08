@@ -14,6 +14,7 @@
 - マイページ
 - ブックマーク
 - メモ(コメント)
+- テスト
 
 
 ### マイグレーション
@@ -122,4 +123,9 @@ php artisan migrate
 
 ### コメント
 ```
+```
+
+### テスト
+```
+php artisan make:test TaskControllerTest
 ```
