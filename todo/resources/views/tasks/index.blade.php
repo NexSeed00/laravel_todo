@@ -13,18 +13,19 @@
                         </p>
                         <div class="text-right d-flex justify-content-end">
                             @auth
-                                @if (false)
-                                    <form action="{{ route('task.bookmark', ['task' => $task->id]) }}" method="post">
+                                <span class="btn pr-0">{{ $task->bookmarks()->count() }}</span>
+                                @if ($task->isBookmarkedByUser(Auth::user()))
+                                    <form action="{{ route('task.unbook', ['task' => $task->id]) }}" method="post">
                                         @csrf
-                                        <button class="btn text-info">
-                                            <i class="far fa-star text-warning"></i>
+                                        <button class="btn pl-1">
+                                            <i class="fas fa-star text-warning"></i>
                                         </button>
                                     </form>
                                 @else
-                                    <form action="{{ route('task.unbook', ['task' => $task->id]) }}" method="post">
+                                    <form action="{{ route('task.bookmark', ['task' => $task->id]) }}" method="post">
                                         @csrf
-                                        <button class="btn text-info">
-                                            <i class="fas fa-star text-warning"></i>
+                                        <button class="btn pl-1">
+                                            <i class="far fa-star text-warning"></i>
                                         </button>
                                     </form>
                                 @endif

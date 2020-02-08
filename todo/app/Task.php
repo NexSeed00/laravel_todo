@@ -13,6 +13,11 @@ class Task extends Model
         'image_at',
     ];
 
+    public function isBookmarkedByUser($user)
+    {
+        return $this->bookmarks()->where('user_id', $user->id)->exists();
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');
