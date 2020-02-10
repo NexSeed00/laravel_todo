@@ -128,4 +128,8 @@ php artisan migrate
 ### テスト
 ```
 php artisan make:test TaskControllerTest
+
+不要なテスト削除
+
+テスト作成
 ```
