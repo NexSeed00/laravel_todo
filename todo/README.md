@@ -75,6 +75,38 @@
 | created_at  | TIMESTAMP   | NO       |            |                      |
 | updated_at  | TIMESTAMP   | NO       |            |                      |
 
+## 環境構築手順
+- リポジトリのクローン
+```
+git clone https://github.com/NexSeed00/laravel.git
+```
+
+- Laravelの環境構築
+```
+cp .env.example .env
+
+# .envファイルを自分の環境にあわせて修正
+
+composer install
+
+npm install
+
+php artisan key:generate
+```
+
+- DBの準備
+```
+# DBの作成
+
+php artisan migrate
+
+php artisan db:seed
+```
+
+- コンパイル
+```
+npm run dev
+```
 
 ## その他
 - エラー文は必ず読むようにしましょう。
