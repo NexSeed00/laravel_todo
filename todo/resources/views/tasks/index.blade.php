@@ -44,4 +44,7 @@
             </div>
         @endforeach
     </div>
+    <div class="row justify-content-center">
+        {{ $tasks->links() }}
+    </div>
 @endsection
