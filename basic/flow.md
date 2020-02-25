@@ -1,4 +1,8 @@
 # 開発の流れ
+設計が終わった後のコーディングの流れです。  
+チームで開発する場合、事前準備は代表で誰か1人が行い、  
+機能開発は各担当者が行います。  
+
 
 ## 事前準備
 基本的にはプロジェクトの開始時に1度だけ実行する作業です。  
@@ -71,8 +75,38 @@ public function up()
 3. テストデータ作成用ファイルの実行
 
 #### テストデータ作成用ファイルの作成
+- 以下のコマンドを実行します
+  - `php artisan make:seeder TasksTableSeeder`
+    - `TasksTableSeeder` の箇所がファイル名
+    - `database/seeds/` フォルダに作成されます
+  - データを挿入したいテーブル名 + Seederという名前にします。  
 #### テストデータ作成用ファイルの編集
+- `run` メソッドにデータを挿入するためのコードを記述
+  ```php
+  public function run()
+  {
+    DB::table('tasks')->insert([
+      'title' => $diary['title'],
+      'contents' => $diary['body'],
+      'created_at' => Carbon\Carbon::now(),
+      'updated_at' => Carbon\Carbon::now(),
+    ]);
+  }
+  ```
+
 #### テストデータ作成用ファイルの実行
+1. DatabaseSeeder.phpの編集
+   1. `run` メソッドを以下の通り編集
+    ```php
+    public function run()
+    {
+        $this->call(TasksTableSeeder::class);
+    }
+    ```
+2. 実行
+  `php artisan db:seed`
+  ※クラスが存在してるのに `not found` のようなエラーが出る場合は、以下のコマンドを実行
+  `composer dump:autoload`
 
 #### 参考リンク
 [シーディング](https://readouble.com/laravel/6.x/ja/seeding.html)
@@ -175,6 +209,13 @@ Route::get('/', 'TasksController@index')->name('diary.index');
 
 
 ### エラーハンドリング
+- 存在しないページにアクセスされた場合の処理
+- 存在はするが、開けてはいけない画面にアクセスされた場合の処理
+  - 例:
+    - 他のユーザーのマイページ
+    - 他のユーザーに公開されていない投稿
+    - 他のユーザーの投稿削除
+    - etc
 #### 参考リンク
 [エラー処理](https://readouble.com/laravel/6.x/ja/errors.html)
 [認可](https://readouble.com/laravel/6.x/ja/authorization.html)
