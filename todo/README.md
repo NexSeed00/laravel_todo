@@ -81,12 +81,29 @@
 git clone https://github.com/NexSeed00/laravel.git
 ```
 
+- ディレクトリの移動
+```
+cd todo
+```
+
 - Laravelの環境構築
 ```
 cp .env.example .env
+```
 
-# .envファイルを自分の環境にあわせて修正
+- .envファイルを自分の環境にあわせて修正
+  ※以下の例はXAMPPのMySQLを使用、DBの名前は `laravel_todo` にする例
+  ※windowsの場合は `DB_SOCKET` の行は不要
+```
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel_todo
+DB_USERNAME=root
+DB_PASSWORD=
+DB_SOCKET=/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock
+```
 
+```
 composer install
 
 npm install
@@ -95,18 +112,33 @@ php artisan key:generate
 ```
 
 - DBの準備
-```
-# DBの作成
+  DBの作成(phpMyAdmin)
 
+```
 php artisan migrate
 
 php artisan db:seed
 ```
 
 - コンパイル
+    ※ publicフォルダの中に `CSS` と `JS` のフォルダができます。
 ```
 npm run dev
 ```
+
+- ビルトインサーバの起動
+```
+php artisan serve
+```
+
+- ブラウザでページが表示できるか確認
+```
+http://localhost:8000/
+```
+
+- テストアカウント
+  - pikopoko@nexseed.net
+  - secret
 
 ## その他
 - エラー文は必ず読むようにしましょう。
