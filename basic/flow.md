@@ -139,15 +139,37 @@ Route::get('/', 'TasksController@index')->name('diary.index');
     - 対応するテーブルを変更したい場合は、`protected $table` にテーブル名を代入します。
 
 #### 参考リンク
+[Eloquent](https://readouble.com/laravel/6.x/ja/eloquent.html)
+[リレーション](https://readouble.com/laravel/6.x/ja/eloquent-relationships.html)
 [クエリビルダ](https://readouble.com/laravel/6.x/ja/queries.html)
 
 
 ### ビュー
+- ユーザーに表示する画面を作成します。  
+- `resources/views` にファイルを追加します。
+  - コマンドはありません。
+  - `views` フォルダ配下に各コントローラーに対応したフォルダを作成することが多いです。  
 #### 参考リンク
 [Bladeテンプレート](https://readouble.com/laravel/6.x/ja/blade.html)
 
 
 ### バリデーション
+- 検証という意味です。
+- ユーザーが入力した内容が正しいか検証します。
+  - 例: ログインフォームに入力されたパスワードが8文字以上かetc
+- ①コントローラー内で検証する方法と、②バリデーション用のクラスを作成して、そこで検証する方法があります。
+- ②の手順は以下の通りです
+  1. バリデーション用のファイルを作成
+  2. 1で作成したファイルにバリデーションのルールを記述
+  3. バリデーションを実行したいコントローラーのメソッドで呼び出し
+  4. ビューファイルにエラーメッセージ表示用のコードを記述
+   
+  - バリデーション用のファイルを作成
+    - `app/Http/Requests`にファイルを追加します。
+      - ファイルは以下のコマンドで作成します。
+        - `php artisan make:request TasksRequest`
+          - `TasksRequest` の箇所にファイル名を記述
+  - 2, 3, 4は参考リンク参照
 #### 参考リンク
 [バリデーション](https://readouble.com/laravel/6.x/ja/validation.html)
 
