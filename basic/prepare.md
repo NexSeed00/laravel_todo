@@ -23,7 +23,7 @@ omposer create-project --prefer-dist laravel/laravel project_name
 php artisan serve
 ```
 
-## DBの用意
+## DBの準備
 1. プロジェクトで使用するDBを作成(PHPMyAdminなどから実行)
   - 照合順序は `utf8mb4` を選択
   - テーブルの作成は不要(Laravelの機能を使用して作成するため)
