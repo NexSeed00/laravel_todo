@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'DiaryController@index')->name('diary.index');
 
 Route::get('diaries/create', 'DiaryController@create')->name('diary.create');
+
+Route::post('diaries/create', 'DiaryController@store')->name('diary.store');

@@ -18,4 +18,14 @@ class DiaryController extends Controller
     {
         return view('diaries.create');
     }
+
+    public function store(Request $request)
+    {
+        Diary::create([
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+
+        return redirect()->route('diary.index');
+    }
 }
