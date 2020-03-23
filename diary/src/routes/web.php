@@ -17,4 +17,4 @@ Route::get('/', 'DiaryController@index')->name('diary.index');
 
 Route::get('diaries/create', 'DiaryController@create')->name('diary.create');
 
-Route::post('diaries/create', 'DiaryController@store')->name('diary.store');
+Route::post('diaries', 'DiaryController@store')->name('diary.store');

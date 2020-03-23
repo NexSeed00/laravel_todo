@@ -101,7 +101,7 @@ http://localhost:8000/diaries/create
 まずはルートを追加します。  
 
 ```php
-Route::post('diaries/create', 'DiaryController@store')->name('diary.store'); // 保存処理
+Route::post('diaries', 'DiaryController@store')->name('diary.store'); // 保存処理
 ```
 今回保存処理が実行されるのは、  
 投稿画面で、投稿ボタンをクリックしたときになるので、  
