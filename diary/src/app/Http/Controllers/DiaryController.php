@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Diary;
+use App\Http\Requests\DiaryRequest;
 
 class DiaryController extends Controller
 {
@@ -19,7 +20,7 @@ class DiaryController extends Controller
         return view('diaries.create');
     }
 
-    public function store(Request $request)
+    public function store(DiaryRequest $request)
     {
         Diary::create([
             'title' => $request->title,
