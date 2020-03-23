@@ -29,4 +29,11 @@ class DiaryController extends Controller
 
         return redirect()->route('diary.index');
     }
+
+    public function destroy(Diary $diary)
+    {
+        $diary->delete();
+
+        return redirect()->route('diary.index');
+    }
 }

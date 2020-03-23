@@ -16,6 +16,11 @@
             <p>{{ $diary->title }}</p>
             <p>{{ $diary->body }}</p>
             <p>{{ $diary->created_at }}</p>
+            <form action="{{ route('diary.destroy', ['diary' => $diary->id]) }}" method="POST" class="d-inline">
+                @csrf
+                @method('delete')
+                <button class="btn btn-danger">削除</button>
+            </form>
         </div>
         <hr>
     @endforeach
