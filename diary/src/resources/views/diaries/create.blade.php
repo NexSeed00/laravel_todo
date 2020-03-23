@@ -15,11 +15,21 @@
                     @csrf
                     <div class="form-group">
                         <label for="title">タイトル</label>
-                        <input type="text" class="form-control" name="title" id="title" />
+                        <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
+                        @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="body">本文</label>
-                        <textarea class="form-control" name="body" id="body"></textarea>
+                        <textarea class="form-control" name="body" id="body">{{ old('body') }}</textarea>
+                        @error('body')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">投稿</button>
