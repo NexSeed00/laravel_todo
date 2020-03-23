@@ -228,6 +228,174 @@ fillableに関しては以下のリンクを参照してください。
     }
 ```
 
+### おまけ
+現在新規作成画面には直接URLを入力しないと遷移できないため、  
+一覧ページに新規投稿ページへのリンクを作成します。  
 
+```php
+// view/diaries/index.blade.php
+<body>
+<a href="{{ route('diary.create') }}" class="btn btn-primary btn-block">
+    新規投稿
+</a>
+```
 
 ### バリデーション
+最後にバリデーションを行います。  
+バリデーションとは **ユーザーが入力した内容が適切か検証を行うこと** です。   
+不適切な場合は、必要に応じて警告などを表示します。  
+
+不適切な場合とは例えば、  
+- 必須入力欄なのに、空欄
+- パスワードが短い
+- 年齢を入れる欄に文字が入っている
+などです。
+
+皆さんも一度はログインやアカウント登録で、  
+エラーが表示されたことがあるのではないでしょうか。  
+不適切な値が入力された場合は、ユーザーが適切な値を入力できるように警告などを表示します。
+
+現在文字を何も入力せずに投稿ボタンを押すと、エラーが表示されるかと思います。  
+これはDBでは日記のタイトルなどが空になることを許可してないのに、  
+空で保存しようとしているためです。  
+
+#### 設定するバリデーション
+日記はタイトルも本文も必ず入力してもらいたいので、  
+入力を必須とします。
+
+バリデーションをする方法はいくつかありますが、  
+ここではそのうちの1つを紹介します。  
+
+大まかな流れとしては以下の通りです。
+1. バリデーションを記述するファイルを作成
+2. 1にバリデーションの条件を記述
+3. 1で作成したファイルを対象のメソッドで使用する
+4. 画面に警告を表示する
+5. 画面のinput欄に入力内容を保持する
+
+#### 参考リンク
+[バリデーション](https://readouble.com/laravel/6.x/ja/validation.html)
+
+#### バリデーションを記述するファイルを作成
+
+以下のコマンドを実行するだけです。  
+`php artisan make:request DiaryRequest`
+
+`app/Http/Requests`に`DiaryRequest`というファイルが作成されます。  
+
+
+#### バリデーションの条件を記述
+
+ファイルを以下のように修正します。  
+```php
+// app/Http/Requests/DiaryRequest
+
+class DiaryRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true; // falseから変更
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'title' => 'required|max:30', 
+            'body' => 'required',
+        ];
+    }
+}
+```
+
+`rules()`メソッドにバリデーションのルールを記述します。  
+今回は、フォームのname属性が`title`の場合は、  
+入力必須(`required`)と、最大30文字(`max:30`)を設定してます。 
+
+
+#### バリデーションのファイルを対象のメソッドで使用
+
+```php
+// app/Http/Controllers/DiaryController
+
+use App\Http\Requests\DiaryRequest; // 追加
+
+class DiaryController extends Controller
+{
+        // 中略
+
+public function store(DiaryRequest $request) //変更
+```
+
+文字を何も入力しないで投稿ボタンを押すと元の画面にもどります。  
+これはstoreメソッドを実行する前に、 `DiaryRequestクラス` に記述したバリデーションを実行しているためです。  
+
+これでバリデーションはできるようになりましたが、  
+画面に何も表示されないため、ユーザーには何がおこったかわからず不親切です。  
+
+ユーザーにわかりやすいように画面にエラー内容を表示しましょう。  
+
+#### 画面に警告を表示する
+
+以下のように `@error` から `enderror` までを追記してください。
+```php
+// resources/views/diaries/create.blade.php
+
+// 中略
+<input type="text" class="form-control" name="title" id="title" />
+ @error('title')
+     <span class="invalid-feedback" role="alert">
+         <strong>{{ $message }}</strong>
+     </span>
+ @enderror
+
+// 中略
+<textarea class="form-control" name="body" id="body"></textarea>
+@error('body')
+  <span class="invalid-feedback" role="alert">
+      <strong>{{ $message }}</strong>
+  </span>
+@enderror
+```
+
+文字を何も入力せず、投稿ボタンを押してみましょう。  
+文字を入力するように促すメッセージが表示されます。  
+`@error` の `()` にはname属性が入ります。
+
+#### 画面のinput欄に入力内容を保持する
+エラーで元の画面に戻った後に、入力内容を1から入力し直すのは面倒です。  
+そのため、入力内容を保持できるようにします。
+値の保持は `inputタグ` の `value` に `old(name属性)` と入力するだけです。  
+※ `textarea` の場合は、開始タグと終了タグの間
+
+```php
+// resources/views/diaries/create.blade.php
+
+<input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
+
+<textarea class="form-control" name="body" id="body">{{ old('body') }}</textarea>
+```
+
+どちらか片方だけ入力して投稿ボタンをクリックして、  
+投稿画面に戻った際に、投稿内容が保持されていればOKです。
+
+### まとめ
+これで新規投稿機能の作成は完了です。
+このカリキュラムでは、以下の4つを学びました。  
+1. ブラウザからURLを入力して、画面が表示されるまでの流れ(復習)
+2. フォームからデータを送信する方法
+3. データを保存する方法
+4. バリデーションの方法
+
+新しい内容が非常に多かったと思いますが、暗記する必要はありません。
+**大まかにこういうことができる**ということ だけ覚えておけば、  
+細かい書き方は、実際に書くときに調べれば問題ありません。
