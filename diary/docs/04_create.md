@@ -222,7 +222,10 @@ fillableに関しては以下のリンクを参照してください。
 ```php
     public function store()
     {
-        // dd('ここに保存処理');
+        Diary::create([
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
 
         return redirect()->route('diary.index');
     }
