@@ -9,7 +9,7 @@
 
 編集画面を表示するためのルートを定義します。  
 ```php
-Route::get('diary/{diary}/edit', 'DiaryController@edit')->name('diary.edit'); 
+Route::get('diaries/{diary}/edit', 'DiaryController@edit')->name('diary.edit'); 
 ```
 
 一覧ページに編集ボタンを作成します。  
@@ -113,6 +113,10 @@ titleとbodyの入力欄をそれぞれ以下のように修正します。
 
 ## 更新処理
 ### ルーティング
+```php
+
+```
+
 ### コントローラー
 ### モデル
 ### ビュー
