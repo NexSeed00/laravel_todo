@@ -113,11 +113,117 @@ titleとbodyの入力欄をそれぞれ以下のように修正します。
 
 ## 更新処理
 ### ルーティング
+
+更新用のルートを追加
 ```php
+Route::put('diaries/{diary}', 'DiaryController@update')->name('diary.update');
+```
+
+編集画面の `form` を修正
+```php
+<form action="{{ route('diary.update', ['diary' => $diary->id]) }}" method="post">
+```
+
+更新ボタンをクリックして、以下のエラーが表示されればOKです。  
+`Method App\Http\Controllers\DiaryController::update does not exist.`
+
+### コントローラー
+更新処理用のメソッドを作成します。  
+
+```php
+    public function update(Request $request, Diary $diary)
+    {
+        dd($diary);
+    }
+```
+
+変数 `$request` には、ユーザーが投稿した内容、  
+変数 `$diary` には Diaryクラスのインスタンスが格納されています。 
+
+### モデル
+テーブルのデータを更新するため、  
+コントローラーからモデルに更新を依頼します。 
+
+`$diary` の `updateメソッド` でデータの更新ができます。 
+
+```php
+    public function update(Request $request, Diary $diary)
+    {
+        $diary->update([
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+    }
+```
+
+DBを確認してデータが更新されていればOKです。
+
+### ビュー
+一覧画面に戻るだけなので新たなビューの作成はありません。  
+以下の通りリダイレクトの処理を追記するだけです。  
+
+```php
+    public function update(Request $request, Diary $diary)
+    {
+        $diary->update([
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+
+        return redirect()->route('diary.index');
+    }
+```
+
+### バリデーション
+最後にバリデーションです。 
+
+大まかな流れとしては以下の通りです。
+1. バリデーションを記述するファイルを作成
+2. 1にバリデーションの条件を記述
+3. 1で作成したファイルを対象のメソッドで使用する
+4. 画面に警告を表示する
+5. 画面のinput欄に入力内容を保持する
+
+今回はバリデーションのルールが新規投稿と同じため、  
+新たにバリデーションのファイルを作成する必要はありません。  
+また、5の入力内容の保持も編集画面の作成時に実施済みなので、上記 3, 4のみ実施します。  
+
+#### バリデーションのファイルを対象のメソッドで使用
+```php
+public function update(DiaryRequest $request, Diary $diary)
+```
+
+入力欄を空にして投稿したときに、編集画面に戻ることを確認しましょう。  
+
+#### 画面に警告を表示する
+```php
+// 中略
+<input type="text" class="form-control" name="title" id="title" value="{{ old('title', $diary->title) }}">
+@error('title')
+  <span class="invalid-feedback" role="alert">
+      <strong>{{ $message }}</strong>
+  </span>
+@enderror
+
+// 中略
+<textarea class="form-control" name="body" id="body">{{ old('body', $diary->body) }}</textarea>
+@error('body')
+  <span class="invalid-feedback" role="alert">
+      <strong>{{ $message }}</strong>
+  </span>
+@enderror
 
 ```
 
-### コントローラー
-### モデル
-### ビュー
-### バリデーション
+## まとめ
+ここまでのカリキュラムで以下のことを一通り実施しました。  
+1. Laravelのインストール
+1. DBの用意
+1. マイグレーション
+1. テストデータの用意
+1. CRUD処理
+1. バリデーション
+2. エラーハンドリング
+
+このカリキュラムまでに実施した内容が土台となります、  
+特に、**CRUD機能の実装** が重要になるので復習しておきましょう。  
