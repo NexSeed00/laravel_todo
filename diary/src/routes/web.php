@@ -20,3 +20,5 @@ Route::get('diaries/create', 'DiaryController@create')->name('diary.create');
 Route::post('diaries', 'DiaryController@store')->name('diary.store');
 
 Route::delete('diaries/{diary}', 'DiaryController@destroy')->name('diary.destroy');
+
+Route::get('diary/{diary}/edit', 'DiaryController@edit')->name('diary.edit');

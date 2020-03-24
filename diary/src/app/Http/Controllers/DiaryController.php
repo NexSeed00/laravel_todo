@@ -36,4 +36,9 @@ class DiaryController extends Controller
 
         return redirect()->route('diary.index');
     }
+
+    public function edit(Diary $diary)
+    {
+        return view('diaries.edit', compact('diary'));
+    }
 }
