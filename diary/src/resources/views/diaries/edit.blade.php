@@ -11,16 +11,26 @@
     <section class="container m-5">
         <div class="row justify-content-center">
             <div class="col-8">
-                <form action="" method="post">
+                <form action="{{ route('diary.update', ['diary' => $diary->id]) }}" method="post">
                     @csrf
                     @method('put')
                     <div class="form-group">
                         <label for="title">タイトル</label>
                         <input type="text" class="form-control" name="title" id="title" value="{{ old('title', $diary->title) }}">
+                        @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="title">本文</label>
                         <textarea class="form-control" name="body" id="body">{{ old('body', $diary->body) }}</textarea>
+                        @error('body')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">更新</button>

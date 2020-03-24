@@ -41,4 +41,14 @@ class DiaryController extends Controller
     {
         return view('diaries.edit', compact('diary'));
     }
+
+    public function update(DiaryRequest $request, Diary $diary)
+    {
+        $diary->update([
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+
+        return redirect()->route('diary.index');
+    }
 }
